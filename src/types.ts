@@ -1,10 +1,31 @@
 export type ChainName = 'xdai' | 'polygon-pos' | 'ethereum'
 export type ChainId = '0x64' | '0x89' | '0x01'
 
-export interface TokenMetadata {
+export interface ERC20Metadata {
 	id: string
 	name: string
 	symbol: string
+}
+
+export interface SuperTokenMetadata {
+	id: string
+	name: string
+	symbol: string
+	underlyingAddress: string
+}
+
+export type TokenMetadata = ERC20Metadata | SuperTokenMetadata
+
+export function isERC20TokenMetadata(
+	token: TokenMetadata
+): token is ERC20Metadata {
+	return !token.hasOwnProperty('underlyingAddress')
+}
+
+export function isSuperTokenMetadata(
+	token: TokenMetadata
+): token is SuperTokenMetadata {
+	return token.hasOwnProperty('underlyingAddress')
 }
 
 export interface OutputFlow {

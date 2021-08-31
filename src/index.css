@@ -21,8 +21,14 @@ header {
 }
 
 table {
+	width: 100%;
+}
+
+.main-table {
 	margin: 32px;
+	width: calc(100% - 64px);
 	border: 2px solid #888;
+	box-sizing: border-box;
 }
 
 tr {
@@ -41,5 +47,15 @@ th {
 
 td {
 	padding: 8px;
-	overflow: scroll;
+	overflow: hidden;
+}
+.mini-table {
+	border: 1px solid #9889ff;
+}
+
+.mini-th {
+	text-align: left;
+	padding-left: 16px;
+	background-color: #404040;
+	color: #f0f0f0;
 }
