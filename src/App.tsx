@@ -1,11 +1,11 @@
 import Header from './components/Header'
-import Table from './components/Table'
+import Dashboard from './components/Dashboard'
 
 export default function App() {
 	return (
 		<main>
 			<Header />
-			<Table />
+			<Dashboard />
 		</main>
 	)
 }

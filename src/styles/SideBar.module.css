@@ -1,0 +1,40 @@
+.sideBar {
+	height: 100vh;
+	background-color: #282828;
+	box-sizing: border-box;
+	padding: 16px 4px 0;
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: 0;
+}
+
+.registry {
+	list-style: none;
+}
+
+.address {
+	background-color: #9889ff;
+	color: #000;
+	font-weight: bold;
+	border-radius: 4px;
+	padding: 8px 4px;
+	margin-top: 12px;
+	transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.address:hover {
+	box-shadow: 2px 2px 2px #000;
+	transform: translateY(-2px);
+}
+
+.address:active {
+	box-shadow: 0 0 0 #000;
+	transform: translateY(0);
+}
+
+.divider {
+	height: 2px;
+	width: 100%;
+	margin: 16px 0;
+	background-color: #888;
+}

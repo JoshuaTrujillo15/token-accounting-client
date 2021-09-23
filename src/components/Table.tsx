@@ -1,28 +1,65 @@
-import { useEffect, useState } from 'react'
-import { OutputTransfer } from '../types'
-import { getTableData } from '../api'
-import Row from './Row'
+import { OutputTransfer, OutputFlow } from '../types'
+import TransferRow from './TransferRow'
+import FlowRow from './FlowRow'
+import styles from '../styles/Table.module.css'
+import { baseUrl } from '../api'
 
-export default function Table() {
-	const [transfers, setTransfers] = useState<Array<OutputTransfer>>([])
-	useEffect(() => {
-		getTableData().then(t => setTransfers(t))
-	}, [])
+type Props = {
+	transfers: Array<OutputTransfer>
+	flows: Array<OutputFlow>
+	address: string
+}
 
+export default function Table({ transfers, flows, address }: Props) {
 	return (
-		<table className="main-table">
-			<tr>
-				<th>Date</th>
-				<th>Sender</th>
-				<th>Recipient</th>
-				<th>Network ID</th>
-				<th>Amount (Token)</th>
-				<th>Amount (Fiat)</th>
-				<th>Symbol</th>
-			</tr>
-			{transfers.map(data => (
-				<Row data={data} />
-			))}
-		</table>
+		<div>
+			<header className={styles.linkHeader}>
+				<h3>Transfers</h3>
+				<a
+					href={`${baseUrl}/accounts/csv/transfers/${address}`}
+					className={styles.link}
+				>
+					Download CSV
+				</a>
+			</header>
+			<table className={styles.table}>
+				<tr className={styles.headerRow}>
+					<th>Date</th>
+					<th>Sender</th>
+					<th>Recipient</th>
+					<th>Network ID</th>
+					<th>Amount (Token)</th>
+					<th>Amount (Fiat)</th>
+					<th>Exchange Rate</th>
+					<th>Symbol</th>
+				</tr>
+				{transfers &&
+					transfers.map(data => <TransferRow data={data} />)}
+			</table>
+			<header className={styles.linkHeader}>
+				<h3>Flows</h3>
+				<a
+					href={`${baseUrl}/accounts/csv/flowstate/${address}`}
+					className={styles.link}
+				>
+					Download CSV
+				</a>
+			</header>
+			<table className={styles.table}>
+				<tr className={styles.headerRow}>
+					<th>Date</th>
+					<th>Start</th>
+					<th>End</th>
+					<th>Sender</th>
+					<th>Recipient</th>
+					<th>Network ID</th>
+					<th>Amount (Token)</th>
+					<th>Amount (Fiat)</th>
+					<th>Exchange Rate</th>
+					<th>Symbol</th>
+				</tr>
+				{flows && flows.map(data => <FlowRow data={data} />)}
+			</table>
+		</div>
 	)
 }

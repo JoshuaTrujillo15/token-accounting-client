@@ -53,3 +53,21 @@ export interface OutputTransfer {
 	exchangeRate: string
 	token: TokenMetadata
 }
+
+export interface GradeEvent {
+	id: string
+	networkId: ChainName
+	transaction: {
+		id: string
+		timestamp: number
+	}
+	token: SuperTokenMetadata
+	amount: string
+}
+
+export interface AccountDocumentType {
+	address: string
+	flowState: OutputFlow[]
+	transfers: OutputTransfer[]
+	gradeEvents: GradeEvent[]
+}
