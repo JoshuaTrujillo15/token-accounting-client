@@ -9,7 +9,7 @@ const shortAddr = (address: string) => {
 }
 
 const dateFormatter = (date: number): string => {
-	return new Date(date).toLocaleDateString('en-US')
+	return new Date(date * 1000).toLocaleDateString('en-US')
 }
 
 const shortAmount = (amount: string) => {
